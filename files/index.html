@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AU Creator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="header">
+        <h1 class="title">AU Creator<span class="badge">Beta</span></h1>
+    </div>
+
+
+    <div id="home">
+
+        <p>Herramientas para darle vida a tus AUs fácil y rápido ♡</p>
+
+
+        <!-- Botón flotante -->
+        <button id="donationButton" class="donation-button">
+            <img src="images/kofilink.png" alt="Apoyar AU Creator">
+        </button>
+
+
+        <!-- Ventana de donación -->
+        <div id="donationModal" class="donation-modal">
+
+            <div class="donation-window">
+
+                <button id="closeDonation" class="close-button">
+                    ×
+                </button>
+
+                <h2>♡ Apoya AU Creator</h2>
+
+                <p>
+                    Holi! soy Amy (@maghxs) (o tal vez me conozcas con "Liz" mi lado más fangirl),
+                    soy lectora y escritora de
+                    fanfics/aus y programadora a tiempo completo. Si mi página
+                    te sirvió, puedes apoyar el proyecto :)
+                </p>
+
+                <p>
+                    Ya sea con un donativo o compartiendo la página,
+                    cualquier apoyo es bienvenido!
+                </p>
+
+                <p>
+                    Pd: las sugerencias también son bienvenidas, mis dms de
+                    X/twitter están abiertos para todos!!
+                </p>
+
+                <button id="donateButton" class="donate-button">
+                    Donar
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="cards-container">
+
+            <button class="Imessage-card" id="imessage-btn">
+                <div class="IMESSAGE-header">
+                    <h2>iMessage</h2>
+                </div>
+
+                <p>Crea una conversación falsa.</p>
+            </button>
+
+
+            <button class="Twitter-card" id="twitter-btn">
+                <div class="Twitter-header">
+                    <h2>X / Twitter</h2>
+                </div>
+
+                <p class="white-text">
+                    Crea perfiles y publicaciones.
+                </p>
+            </button>
+
+        </div>
+
+        <h3>Próximamente: perfiles, historias y chat de instagram :)</h3>
+
+    </div>
+
+    <button id="backButton" style="display: none;">
+        ⬅ Volver
+    </button>
+
+    <div id="imessageCreator">
+
+
+        <div class="creator-container">
+
+            <!-- COLUMNAS 1 y 2 -->
+            <div class="settings-panel">
+
+                <h1>iMessage Creator</h1>
+
+                <button id="saveScreenshot">Guardar PNG</button>
+
+                <div class="settings-columns">
+
+                    <div class="settings-col">
+
+                        <h2>Personalizar chat</h2>
+
+                        <div class="option-group">
+                            <label class="option-label">Tema</label>
+                            <div class="segmented" id="themeSwitch">
+                                <button data-value="claro" class="active">Claro</button>
+                                <button data-value="oscuro">Oscuro</button>
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <label class="option-label">Letra</label>
+                            <div class="segmented" id="fontSwitch">
+                                <button data-value="regular" class="active">Regular</button>
+                                <button data-value="bold">Bold</button>
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <label class="option-label">Estado del mensaje</label>
+                            <div class="segmented" id="statusSwitch">
+                                <button data-value="enviado">Enviado</button>
+                                <button data-value="entregado" class="active">Entregado</button>
+                                <button data-value="leido">Leído</button>
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <label class="option-label">Fecha</label>
+                            <div class="segmented" id="dateSwitch">
+                                <button data-value="hoy" class="active">Hoy</button>
+                                <button data-value="personalizada">Personalizada</button>
+                            </div>
+                            <input type="time" id="customTime">
+                            <input type="datetime-local" id="customDate">
+                        </div>
+
+                        <div class="option-group">
+                            <label class="option-label">Barra "iMessage"</label>
+                            <div class="segmented" id="inputSwitch">
+                                <button data-value="mostrar" class="active">Mostrar</button>
+                                <button data-value="ocultar">Ocultar</button>
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <label class="option-label">Número junto a la flecha</label>
+                            <input type="number" id="unreadInput" min="0" value="1">
+                        </div>
+
+                        <div class="numero-option-group">
+                            <label class="option-label">Nombre del grupo</label>
+                            <input type="text" id="groupName" placeholder="Nombre del grupo">
+                        </div>
+
+                    </div>
+
+                    <div class="settings-col">
+
+                        <h2>Participantes</h2>
+
+                        <button id="addParticipant">+ Añadir participante</button>
+
+                        <p class="letritas"> Para cambiar la foto de cada participante, haz clic en su avatar.
+                        </p>
+
+                        <div id="participantsList"></div>
+
+                        <h2>Mensajes "Yo"</h2>
+
+                        <button id="addMessage">+ Enviar mensaje</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- COLUMNA 3: iPHONE -->
+            <div class="preview-panel">
+
+                <div class="iphone">
+
+                    <div class="iphone-header">
+
+                        <div class="back-pill">
+                            <span class="chevron">‹</span>
+                            <span id="unreadCount">1</span>
+                        </div>
+
+                        <div class="conversation-info">
+                            <div class="conversation-photo" id="conversationPhoto">👤</div>
+                            <div class="conversation-name" id="conversationName">Nombre</div>
+                        </div>
+
+                        <div class="video-btn">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#007aff"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="6" width="13" height="12" rx="3" />
+                                <path d="M15 10l6-3v10l-6-3" />
+                            </svg>
+                        </div>
+
+                    </div>
+
+                    <div class="messages">
+
+                        <div class="conversation-start">
+                            <span id="conversationDate"></span>
+                        </div>
+
+                        <div class="message-status" id="messageStatus">Entregado</div>
+
+                    </div>
+
+                    <div class="input-bar" id="inputBar">
+                        <div class="input-plus">+</div>
+                        <div class="input-field">iMessage</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <section id="twitterCreator" style="display: none;">
+
+        <div class="twitter-title">
+            <h1>X / Twitter Creator</h1>
+        </div>
+
+        <div class="twitter-tabs">
+            <button id="profileTab" class="twitter-tab active">
+                Perfil
+            </button>
+            <button id="tweetsTab" class="twitter-tab">
+                Tweets
+            </button>
+        </div>
+
+
+
+
+        <div id="profileInterface" class="twitter-interface">
+            <h2> Crear Perfil</h2>
+            <p>Personaliza el perfil de tu personaje.</p>
+
+            <div class="saved-characters">
+                <h2>Personajes</h2>
+                <p>Guarda los perfiles que quieras usar en tus tweets.</p>
+
+                <div id="charactersList"></div>
+
+                <button id="newCharacterButton" type="button">
+                    + Crear personaje
+                </button>
+            </div>
+
+            <button id="saveXCharacter" type="button">
+                Guardar personaje
+            </button>
+
+
+            <button id="saveXProfile">Guardar PNG</button>
+
+            <div class="creator-container">
+
+                <!-- COLUMNA DE PERSONALIZACIÓN -->
+                <div class="settings-panel">
+                    <h2>Personalizar Perfil</h2>
+
+                    <div class="settings-columns">
+                        <div class="settings-col">
+                            <div class="option-group">
+                                <label class="x-option-label">Foto de portada (Banner)</label>
+                                <input type="file" id="xBannerInput" accept="image/*">
+                            </div>
+
+                            <div class="option-group">
+                                <label class="x-option-label">Foto de perfil</label>
+                                <input type="file" id="xAvatarInput" accept="image/*">
+                            </div>
+
+                            <div class="option-group">
+                                <label class="x-option-label">Nombre del personaje</label>
+                                <input type="text" id="xNameInput" placeholder="Ej: Amy 🦝">
+                            </div>
+
+                            <div class="option-group">
+                                <label class="x-option-label">Usuario (@)</label>
+                                <input type="text" id="xHandleInput" placeholder="Ej: maghxs">
+                            </div>
+
+                            <div class="option-group">
+                                <label class="x-option-label">Biografía</label>
+                                <textarea id="xBioInput" rows="3" placeholder="Escribe la bio aquí..."></textarea>
+                            </div>
+
+                            <div class="option-group">
+                                <label class="x-option-label">Cuenta privada</label>
+                                <div class="x-segmented" id="xPrivateAccountSwitch">
+                                    <button data-value="publica" class="active">Pública</button>
+                                    <button data-value="privada">Privada</button>
+                                </div>
+                            </div>
+
+                            <div class="option-group">
+                                <label class="x-option-label">Botón del perfil</label>
+                                <div class="x-segmented" id="xFollowButtonSwitch">
+                                    <button data-value="seguir" class="active">Seguir</button>
+                                    <button data-value="editar">Editar perfil</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-col">
+
+                            <div class="option-group">
+                                <label class="x-option-label">Tema del perfil</label>
+
+                                <div class="x-segmented" id="xThemeSwitch">
+                                    <button data-value="dark" class="active">Dark</button>
+                                    <button data-value="light">White</button>
+                                </div>
+                            </div>
+
+                            <div class="option-group">
+                                <label class="x-option-label">Cantidad de Posts / Tweets</label>
+                                <input type="text" id="xTweetsCountInput" class="x-input" placeholder="Ej: 1,420">
+                            </div>
+                            <div class="option-group">
+                                <label class="x-option-label">Ubicación (opcional)</label>
+                                <input type="text" id="xLocationInput" placeholder="Ej: París, Francia">
+                            </div>
+
+                            <div class="option-group">
+                                <label class="x-option-label">Enlace / Sitio web (opcional)</label>
+                                <input type="text" id="xLinkInput" placeholder="Ej: ko-fi.com/maghxs">
+                            </div>
+
+                            <div class="option-group">
+                                <label class="x-option-label">Fecha de registro (opcional)</label>
+                                <input type="text" id="xJoinedInput" placeholder="Ej: Se unió en mayo de 2020">
+                            </div>
+
+                            <div class="option-group">
+                                <label class="x-option-label">Cumpleaños (opcional)</label>
+                                <input type="text" id="xBirthdayInput" placeholder="Ej: Nació el 12 de junio">
+                            </div>
+
+                            <div class="option-group">
+                                <label class="x-option-label">Siguiendo</label>
+                                <input type="text" id="xFollowingInput" placeholder="Ej: 340">
+                            </div>
+
+                            <div class="option-group">
+                                <label class="x-option-label">Seguidores</label>
+                                <input type="text" id="xFollowersInput" placeholder="Ej: 1,250">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLUMNA DE PREVISUALIZACIÓN (IPHONE) -->
+                <div class="preview-panel">
+                    <div class="iphone x-profile-preview">
+                        <!-- Encabezado superior del perfil -->
+                        <div class="x-header">
+                            <div class="x-back-btn">‹</div>
+                            <div class="x-header-title">
+                                <div class="x-name-with-lock">
+                                    <span id="xDisplayHeaderName">Nombre</span>
+                                    <span id="xHeaderLockIcon" class="x-lock-icon" style="display: none;"><img
+                                            src="images/candado-blacktheme.png" alt="Cuenta privada"></span>
+                                </div>
+                                <span class="x-header-tweets" id="xDisplayTweetsCount">0 Posts</span>
+                            </div>
+                        </div>
+
+
+
+                        <div class="x-profile-scroll">
+                            <!-- Banner / Portada -->
+                            <div class="x-banner" id="xBannerPreview"></div>
+
+                            <!-- Información principal -->
+                            <div class="x-profile-details">
+                                <div class="x-avatar-container">
+                                    <div class="x-avatar" id="xAvatarPreview">👤</div>
+                                    <button class="x-edit-btn" id="xProfileActionButton">Seguir</button>
+                                </div>
+
+                                <div class="x-user-info">
+                                    <div class="x-name-with-lock">
+                                        <h3 id="xDisplayName">Nombre del personaje</h3>
+                                        <span id="xProfileLockIcon" class="x-lock-icon" style="display: none;"><img
+                                                src="images/candado-blacktheme.png" alt="Cuenta privada"></span>
+                                    </div>
+                                    <span id="xDisplayHandle">@usuario</span>
+                                </div>
+
+                                <p class="x-bio" id="xDisplayBio">Esta es la biografía del personaje...</p>
+
+                                <!-- Metadatos opcionales -->
+                                <div class="x-meta-info">
+                                    <span id="xDisplayLocation" class="x-meta-item" style="display:none;">📍 <span
+                                            class="text"></span></span>
+                                    <span id="xDisplayLink" class="x-meta-item" style="display:none;">🔗 <span
+                                            class="text"></span></span>
+                                    <span id="xDisplayBirthday" class="x-meta-item" style="display:none;">🎈 <span
+                                            class="text"></span></span>
+                                    <span id="xDisplayJoined" class="x-meta-item" style="display:none;">📅 <span
+                                            class="text"></span></span>
+                                </div>
+
+                                <!-- Seguidores y Seguidos -->
+                                <div class="x-follow-stats">
+                                    <span><strong id="xDisplayFollowing">0</strong> Siguiendo</span>
+                                    <span><strong id="xDisplayFollowers">0</strong> Seguidores</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <div id="tweetsInterface" class="twitter-interface" style="display: none;">
+
+            <div class="tweets-layout"></div>
+            <div class="twitter-settings">
+
+                <h2>Crear tweet</h2>
+                <p>¿Qué está pensando tu personaje?</p>
+
+                <label class="x-option-label">Tema</label>
+
+                <div class="x-segmented" id="xTweetThemeSwitch">
+                    <button type="button" data-value="dark" class="active">Dark</button>
+                    <button type="button" data-value="light">White</button>
+                </div>
+
+                <label class="x-option-label">Publicar como</label>
+
+                <select id="tweetAuthorSelect">
+                    <option value="">Selecciona un personaje</option>
+                </select>
+
+                <textarea id="tweetTextInput" maxlength="280" placeholder="¿Qué está pasando?" rows="4"></textarea>
+
+                <div class="tweet-image-upload">
+
+                    <label for="tweetImageInput" class="tweet-image-button">
+                        🖼️ Foto
+                    </label>
+
+                    <input type="file" id="tweetImageInput" accept="image/*" hidden>
+
+                    <div id="tweetImagePreview" class="tweet-image-preview"></div>
+
+                </div>
+
+                <label class="x-option-label">Fecha y hora</label>
+
+                <div class="x-segmented" id="tweetDateSwitch">
+                    <button type="button" data-value="ahora" class="active">Ahora</button>
+                    <button type="button" data-value="personalizada">Personalizada</button>
+                </div>
+
+                <input type="datetime-local" id="tweetDateInput">
+
+                <div class="tweet-composer-bottom">
+                    <span id="tweetCharacterCount">0 / 280</span>
+
+                    <button id="publishTweetButton" type="button">
+                        Publicar
+                    </button>
+                </div>
+
+                <p class=letritas> Guía: Para cambiar cualquier número (likes, reposts, view, etc) dale clic encima.
+                    Para eliminar un post da clic en los 3 puntos.</p>
+
+            </div>
+        </div>
+
+        <div id="tweetsList"></div>
+
+        </div>
+
+    </section>
+
+
+    <div class="footer">
+
+        <p>
+            Creado por
+            <a href="https://github.com/maghxs">
+                maghxs
+            </a>
+
+        </p>
+
+        <div class="social-links">
+
+            <a href="https://x.com/maghxs" target="_blank">
+                <img src="images/twitterx.png" alt="X">
+            </a>
+
+            <a href="https://wattpad.com/user/sattrng" target="_blank">
+                <img src="images/wattpad.png" alt="Wattpad">
+            </a>
+
+            <a href="https://www.tiktok.com/@sattrng" target="_blank">
+                <img src="images/tiktok.png" alt="TikTok">
+            </a>
+
+            <a href="https://ko-fi.com/maghxs" target="_blank">
+                <img src="images/kofi.png" alt="Ko-fi">
+            </a>
+
+        </div>
+
+        <a class="letritas" href="https://forms.gle/mSny5pCEsrgVTfdN7" target="_blank">
+            ¿Encontraste algún error o tienes alguna sugerencia?
+        </a>
+
+    </div>
+
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+
+
+
+
+    <div id="messageTypeModal" class="message-type-modal">
+        <div class="message-type-box">
+
+            <button id="closeMessageType" class="close-message-type">
+                ×
+            </button>
+
+            <h3>¿Qué quieres enviar?</h3>
+
+            <div class="message-type-options">
+
+                <button id="sendTextOption">
+                    <span>💬</span>
+                    <strong>Mensaje</strong>
+                </button>
+
+                <button id="sendPhotoOption">
+                    <span>🖼️</span>
+                    <strong>Foto</strong>
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
