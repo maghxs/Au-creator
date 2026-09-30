@@ -1,8 +1,6 @@
 console.log("AU Creator funcionando ♡");
 
-/* ---------- CONFIGURACIÓN ---------- */
 
-// En "icono" puedes poner un emoji o una ruta: "images/corazon.png"
 const REACCIONES = [
     { id: "corazon", icono: "❤️" },
     { id: "pulgar-arriba", icono: "👍" },
@@ -19,7 +17,6 @@ const TEXTO_ESTADO = {
 };
 
 
-/* ---------- DOM ---------- */
 
 const donationButton = document.getElementById("donationButton");
 const donationModal = document.getElementById("donationModal");
@@ -72,7 +69,6 @@ const profileInterface =
 const tweetsInterface =
     document.getElementById("tweetsInterface");
 
-/* ---------- ESTADO ---------- */
 
 let participantes = [];
 let mensajes = [];
@@ -82,7 +78,6 @@ let modoFecha = "hoy";
 let siguienteId = 1;
 
 
-/* ---------- DONACIÓN ---------- */
 
 donationButton.addEventListener("click", function () {
     donationModal.style.display = "flex";
@@ -97,7 +92,7 @@ donateButton.addEventListener("click", function () {
 });
 
 
-/* ---------- NAVEGACIÓN ---------- */
+
 
 imessageButton.addEventListener("click", function () {
 
@@ -130,7 +125,6 @@ backButton.addEventListener("click", function () {
 
 });
 
-/* ---------- UTILIDADES ---------- */
 
 function renderIcono(icono, elemento) {
 
@@ -171,7 +165,6 @@ function activarSwitch(switchElement, callback) {
 }
 
 
-/* ---------- AVATAR ---------- */
 
 function crearAvatar(participante) {
 
@@ -201,7 +194,6 @@ function crearAvatar(participante) {
 }
 
 
-/* ---------- PERSONALIZAR CHAT ---------- */
 
 activarSwitch(
     themeSwitch,
@@ -312,7 +304,6 @@ unreadInput.addEventListener(
 );
 
 
-/* ---------- FECHA ---------- */
 
 function actualizarFecha() {
 
@@ -372,7 +363,6 @@ function actualizarFecha() {
 actualizarFecha();
 
 
-/* ---------- ENCABEZADO ---------- */
 
 function actualizarEncabezado() {
 
@@ -394,7 +384,6 @@ function actualizarEncabezado() {
     photo.innerHTML = "";
 
 
-    // Sin participantes
     if (total === 0) {
 
         name.textContent =
@@ -407,7 +396,6 @@ function actualizarEncabezado() {
     }
 
 
-    // Un participante
     if (total === 1) {
 
         name.textContent =
@@ -421,7 +409,6 @@ function actualizarEncabezado() {
     }
 
 
-    // Grupo
     const nombreGrupo =
         groupName.value.trim();
 
@@ -460,7 +447,6 @@ function actualizarEncabezado() {
 }
 
 
-/* ---------- PARTICIPANTES ---------- */
 
 addParticipant.addEventListener(
     "click",
@@ -500,7 +486,6 @@ addParticipant.addEventListener(
 );
 
 
-/* ---------- ELEGIR FOTO DEL PARTICIPANTE ---------- */
 
 function elegirFoto(participante) {
 
@@ -559,7 +544,6 @@ function elegirFoto(participante) {
 }
 
 
-/* ---------- MOSTRAR PARTICIPANTES ---------- */
 
 function mostrarParticipantes() {
 
@@ -573,7 +557,6 @@ function mostrarParticipantes() {
                 document.createElement("div");
 
 
-            /* ----- AVATAR ----- */
 
             const avatar =
                 crearAvatar(participante);
@@ -594,7 +577,6 @@ function mostrarParticipantes() {
             );
 
 
-            /* ----- NOMBRE ----- */
 
             const nombre =
                 document.createElement("span");
@@ -603,7 +585,6 @@ function mostrarParticipantes() {
                 participante.nombre;
 
 
-            /* ----- BOTÓN MENSAJE ----- */
 
             const messageButton =
                 document.createElement("button");
@@ -665,7 +646,6 @@ function mostrarParticipantes() {
             );
 
 
-            /* ----- BOTÓN FOTO ----- */
 
             const photoButton =
                 document.createElement("button");
@@ -690,7 +670,6 @@ function mostrarParticipantes() {
             );
 
 
-            /* ----- BOTÓN EDITAR ----- */
 
             const editButton =
                 document.createElement("button");
@@ -751,7 +730,6 @@ function mostrarParticipantes() {
             );
 
 
-            /* ----- BOTÓN ELIMINAR ----- */
 
             const deleteButton =
                 document.createElement("button");
@@ -787,7 +765,6 @@ function mostrarParticipantes() {
             );
 
 
-            /* ----- AÑADIR A LA FILA ----- */
 
             fila.appendChild(
                 avatar
@@ -824,7 +801,6 @@ function mostrarParticipantes() {
 }
 
 
-/* ---------- BOTÓN GENERAL AGREGAR MENSAJE ---------- */
 
 addMessage.addEventListener(
     "click",
@@ -836,7 +812,6 @@ addMessage.addEventListener(
 );
 
 
-/* ---------- ENVIAR FOTO ---------- */
 
 function elegirFotoMensaje(
     participante = null
@@ -920,7 +895,6 @@ function elegirFotoMensaje(
 }
 
 
-/* ---------- MENÚ DEL MENSAJE ---------- */
 
 const menu =
     document.createElement("div");
@@ -969,7 +943,6 @@ function abrirMenu(
     menu.innerHTML = "";
 
 
-    /* ----- REACCIONES ----- */
 
     const fila =
         document.createElement("div");
@@ -1034,7 +1007,6 @@ function abrirMenu(
     );
 
 
-    /* ----- EDITAR ----- */
 
     const editar =
         document.createElement("button");
@@ -1082,7 +1054,6 @@ function abrirMenu(
     );
 
 
-    /* ----- ELIMINAR ----- */
 
     const eliminar =
         document.createElement("button");
@@ -1119,7 +1090,6 @@ function abrirMenu(
     );
 
 
-    /* ----- POSICIÓN ----- */
 
     menu.style.display =
         "block";
@@ -1171,10 +1141,6 @@ function abrirMenu(
 }
 
 
-/* ---------- MENSAJES ---------- */
-
-// Dos mensajes son del mismo grupo
-// si los manda la misma persona
 function mismoGrupo(a, b) {
 
     return (
@@ -1205,7 +1171,6 @@ function mostrarMensajes() {
         participantes.length > 1;
 
 
-    /* ----- LIMPIAR MENSAJES ----- */
 
     container
         .querySelectorAll(".message")
@@ -1214,7 +1179,6 @@ function mostrarMensajes() {
         );
 
 
-    /* ----- BUSCAR ÚLTIMO ENVIADO ----- */
 
     let ultimoEnviado = -1;
 
@@ -1241,7 +1205,6 @@ function mostrarMensajes() {
         null;
 
 
-    /* ----- CREAR MENSAJES ----- */
 
     mensajes.forEach(
         function (m, i) {
@@ -1264,7 +1227,6 @@ function mostrarMensajes() {
             );
 
 
-            /* ----- TEXTO O FOTO ----- */
 
             if (
                 m.tipoContenido === "foto"
@@ -1298,7 +1260,6 @@ function mostrarMensajes() {
             }
 
 
-            /* ----- AGRUPACIÓN ----- */
 
             if (
                 mismoGrupo(
@@ -1330,7 +1291,6 @@ function mostrarMensajes() {
             }
 
 
-            /* ----- AVATAR EN GRUPOS ----- */
 
             if (
                 esGrupo
@@ -1372,7 +1332,6 @@ function mostrarMensajes() {
             }
 
 
-            /* ----- REACCIÓN ----- */
 
             if (m.reaccion) {
 
@@ -1416,7 +1375,6 @@ function mostrarMensajes() {
             }
 
 
-            /* ----- MENÚ ----- */
 
             el.addEventListener(
                 "click",
@@ -1452,7 +1410,6 @@ function mostrarMensajes() {
     );
 
 
-    /* ----- ESTADO ----- */
 
     if (ultimaBurbuja) {
 
@@ -1474,7 +1431,6 @@ function mostrarMensajes() {
     }
 
 
-    /* ----- SCROLL ----- */
 
     container.scrollTop =
         container.scrollHeight;
@@ -1482,7 +1438,6 @@ function mostrarMensajes() {
 }
 
 
-/* ---------- GRUPO ---------- */
 
 function comprobarGrupo() {
 
@@ -1503,7 +1458,6 @@ function comprobarGrupo() {
 }
 
 
-/* ---------- CAPTURA ---------- */
 
 saveScreenshot.addEventListener(
     "click",
@@ -1539,7 +1493,6 @@ saveScreenshot.addEventListener(
 );
 
 
-/* ---------- MODAL DE TIPO DE MENSAJE ---------- */
 
 function abrirTipoMensaje(
     participante = null
@@ -1567,7 +1520,6 @@ function cerrarTipoMensaje() {
 }
 
 
-/* ----- CERRAR MODAL ----- */
 
 closeMessageType.addEventListener(
     "click",
@@ -1592,7 +1544,6 @@ messageTypeModal.addEventListener(
 );
 
 
-/* ---------- OPCIÓN TEXTO DEL MODAL ---------- */
 
 sendTextOption.addEventListener(
     "click",
@@ -1651,7 +1602,6 @@ sendTextOption.addEventListener(
 );
 
 
-/* ---------- OPCIÓN FOTO DEL MODAL ---------- */
 
 sendPhotoOption.addEventListener(
     "click",
@@ -1666,7 +1616,6 @@ sendPhotoOption.addEventListener(
 
 
 
-/* ---------- X / TWITTER TABS ---------- */
 
 profileTab.addEventListener("click", function () {
 
@@ -1690,7 +1639,6 @@ tweetsTab.addEventListener("click", function () {
 });
 
 
-/* ---------- X / TWITTER PROFILE GENERATOR ---------- */
 
 const xNameInput = document.getElementById("xNameInput");
 const xHandleInput = document.getElementById("xHandleInput");
@@ -1718,7 +1666,6 @@ const xDisplayFollowers = document.getElementById("xDisplayFollowers");
 const xAvatarPreview = document.getElementById("xAvatarPreview");
 const xBannerPreview = document.getElementById("xBannerPreview");
 
-// Actualización de texto
 function setupInputListener(input, element, defaultText = "", isOptional = false) {
     if (!input || !element) return;
     input.addEventListener("input", function () {
@@ -1751,7 +1698,6 @@ setupInputListener(xBirthdayInput, xDisplayBirthday, "", true);
 const xFollowButtonSwitch = document.getElementById("xFollowButtonSwitch");
 const xProfileActionButton = document.getElementById("xProfileActionButton");
 
-/* ---------- CANTIDAD DE TWEETS / POSTS ---------- */
 
 const xTweetsCountInput = document.getElementById("xTweetsCountInput");
 const xDisplayTweetsCount = document.getElementById("xDisplayTweetsCount");
@@ -1760,7 +1706,6 @@ xTweetsCountInput.addEventListener("input", function () {
     const val = xTweetsCountInput.value.trim();
 
     if (val) {
-        // Si el usuario escribe solo un número, le añade "Posts"
         xDisplayTweetsCount.textContent = isNaN(val) ? val : `${val} posts`;
     } else {
         xDisplayTweetsCount.textContent = "0 posts";
@@ -1779,14 +1724,12 @@ activarSwitch(xFollowButtonSwitch, function (valor) {
     }
 });
 
-// Manejo del User (@)
 xHandleInput.addEventListener("input", function () {
     let val = xHandleInput.value.trim();
     if (val && !val.startsWith("@")) val = "@" + val;
     xDisplayHandle.textContent = val || "@usuario";
 });
 
-// Cargar Foto de Perfil
 xAvatarInput.addEventListener("change", function () {
     const file = xAvatarInput.files[0];
     if (file) {
@@ -1798,7 +1741,6 @@ xAvatarInput.addEventListener("change", function () {
     }
 });
 
-// Cargar Banner
 xBannerInput.addEventListener("change", function () {
     const file = xBannerInput.files[0];
     if (file) {
@@ -1843,7 +1785,6 @@ saveXProfile.addEventListener(
     }
 );
 
-/* ---------- SWITCH CUENTA PRIVADA (CANDADO) ---------- */
 
 const xPrivateAccountSwitch = document.getElementById("xPrivateAccountSwitch");
 const xHeaderLockIcon = document.getElementById("xHeaderLockIcon");
@@ -1899,7 +1840,6 @@ function updateXLockIcons() {
     });
 }
 
-// ---------- PERSONAJES GUARDADOS ----------
 
 let savedCharacters = JSON.parse(
     localStorage.getItem("xCharacters")
@@ -1917,7 +1857,6 @@ function loadCharacter(index) {
 
     editingCharacterIndex = index;
 
-    // Campos
     xNameInput.value = character.name || "";
     xHandleInput.value = character.handle || "";
     xBioInput.value = character.bio || "";
@@ -1929,7 +1868,6 @@ function loadCharacter(index) {
     xFollowersInput.value = character.followers || "";
     xTweetsCountInput.value = character.tweetsCount || "";
 
-    // Actualizar preview
     xDisplayName.textContent = character.name || "Nombre del personaje";
     xDisplayHeaderName.textContent = character.name || "Nombre";
 
@@ -1947,7 +1885,6 @@ function loadCharacter(index) {
             ? `${character.tweetsCount} posts`
             : "0 posts";
 
-    // Datos opcionales
     if (character.location) {
         xDisplayLocation.style.display = "inline";
         xDisplayLocation.querySelector(".text").textContent = character.location;
@@ -1976,21 +1913,18 @@ function loadCharacter(index) {
         xDisplayBirthday.style.display = "none";
     }
 
-    // Avatar
     if (character.avatar) {
         xAvatarPreview.innerHTML = `<img src="${character.avatar}" alt="Avatar">`;
     } else {
         xAvatarPreview.innerHTML = "👤";
     }
 
-    // Banner
     if (character.banner) {
         xBannerPreview.style.backgroundImage = `url("${character.banner}")`;
     } else {
         xBannerPreview.style.backgroundImage = "";
     }
 
-    // Botón Seguir / Editar perfil
     xFollowButtonSwitch
         .querySelectorAll("button")
         .forEach(btn => btn.classList.remove("active"));
@@ -2007,7 +1941,6 @@ function loadCharacter(index) {
         xProfileActionButton.classList.remove("edit-mode");
     }
 
-    // Cuenta privada
     xPrivateAccountSwitch
         .querySelectorAll("button")
         .forEach(btn => btn.classList.remove("active"));
@@ -2024,7 +1957,6 @@ function loadCharacter(index) {
         xProfileLockIcon.style.display = "none";
     }
 
-    // Tema
     xThemeSwitch
         .querySelectorAll("button")
         .forEach(btn => btn.classList.remove("active"));
@@ -2041,7 +1973,6 @@ function loadCharacter(index) {
 
     updateXLockIcons();
 
-    // Volver arriba para editar
     window.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -2121,7 +2052,6 @@ function renderCharacters() {
 
 function getCurrentCharacter() {
 
-    // Buscar avatar actual
     const avatarImg =
         xAvatarPreview.querySelector("img");
 
@@ -2131,7 +2061,6 @@ function getCurrentCharacter() {
             : null;
 
 
-    // Obtener banner actual
     const banner =
         xBannerPreview.style.backgroundImage
             ? xBannerPreview.style.backgroundImage
@@ -2142,27 +2071,22 @@ function getCurrentCharacter() {
 
     return {
 
-        // Datos principales
         name: xNameInput.value,
         handle: xHandleInput.value,
         bio: xBioInput.value,
 
-        // Información adicional
         location: xLocationInput.value,
         link: xLinkInput.value,
         joined: xJoinedInput.value,
         birthday: xBirthdayInput.value,
 
-        // Estadísticas
         following: xFollowingInput.value,
         followers: xFollowersInput.value,
         tweetsCount: xTweetsCountInput.value,
 
-        // Apariencia
         avatar: avatar,
         banner: banner,
 
-        // Configuraciones
         privateAccount:
             xPrivateAccountSwitch.querySelector(
                 "button.active"
@@ -2182,7 +2106,6 @@ function getCurrentCharacter() {
 
 function limpiarFormularioX() {
 
-    // Campos
     xNameInput.value = "";
     xHandleInput.value = "";
     xBioInput.value = "";
@@ -2196,15 +2119,12 @@ function limpiarFormularioX() {
     xFollowersInput.value = "";
     xTweetsCountInput.value = "";
 
-    // Avatar
     xAvatarInput.value = "";
     xAvatarPreview.innerHTML = "👤";
 
-    // Banner
     xBannerInput.value = "";
     xBannerPreview.style.backgroundImage = "";
 
-    // Preview
     xDisplayName.textContent = "Nombre del personaje";
     xDisplayHeaderName.textContent = "Nombre";
     xDisplayHandle.textContent = "@usuario";
@@ -2216,17 +2136,14 @@ function limpiarFormularioX() {
     xDisplayFollowers.textContent = "0";
     xDisplayTweetsCount.textContent = "0 posts";
 
-    // Datos opcionales
     xDisplayLocation.style.display = "none";
     xDisplayLink.style.display = "none";
     xDisplayJoined.style.display = "none";
     xDisplayBirthday.style.display = "none";
 
-    // Botón Seguir
     xProfileActionButton.textContent = "Seguir";
     xProfileActionButton.classList.remove("edit-mode");
 
-    // Cuenta pública
     xPrivateAccountSwitch
         .querySelectorAll("button")
         .forEach(btn => btn.classList.remove("active"));
@@ -2238,7 +2155,6 @@ function limpiarFormularioX() {
     xHeaderLockIcon.style.display = "none";
     xProfileLockIcon.style.display = "none";
 
-    // Dark
     xThemeSwitch
         .querySelectorAll("button")
         .forEach(btn => btn.classList.remove("active"));
@@ -2363,7 +2279,6 @@ let savedTweets = JSON.parse(
     localStorage.getItem("xTweets")
 ) || [];
 
-/* ---------- FECHA DEL TWEET ---------- */
 
 const tweetDateSwitch = document.getElementById("tweetDateSwitch");
 const tweetDateInput = document.getElementById("tweetDateInput");
@@ -2380,7 +2295,6 @@ tweetDateSwitch.querySelectorAll("button").forEach(function (boton) {
     });
 });
 
-/* ---------- PUBLICAR ---------- */
 
 const publishTweetButton = document.getElementById("publishTweetButton");
 
@@ -2444,7 +2358,6 @@ publishTweetButton.addEventListener("click", function () {
     tweetImagePreview.innerHTML = "";
 });
 
-/* ---------- ICONOS ---------- */
 
 const XP_PATHS = {
     back: "M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z",
@@ -2461,10 +2374,7 @@ function xpSvg(path, size) {
     return `<svg viewBox="0 0 24 24" width="${size || 20}" height="${size || 20}" fill="currentColor" aria-hidden="true"><path d="${path}"></path></svg>`;
 }
 
-/* ---------- LIKE / REPOST: sumar o restar ---------- */
 
-// Si el número es simple (ej. 20) suma o resta 1.
-// Si es texto (ej. "14 mil") lo deja igual.
 function ajustarNumero(valor, delta) {
     const limpio = String(valor || "0").trim();
 
@@ -2483,14 +2393,11 @@ function alternar(tweet, estado, numero) {
     renderTweets();
 }
 
-/* ---------- HILO / RESPUESTAS ---------- */
 
 XP_PATHS.views = "M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z";
 
-// Posts que tienen el formulario de respuesta abierto
 const formulariosAbiertos = new Set();
 
-/* ---------- TEMA (DARK / WHITE) ---------- */
 
 const xTweetThemeSwitch = document.getElementById("xTweetThemeSwitch");
 let tweetTheme = localStorage.getItem("xTweetTheme") || "dark";
@@ -2516,7 +2423,6 @@ function formatoHandle(personaje) {
     return h.startsWith("@") ? h : "@" + h;
 }
 
-// Número o texto editable con un clic
 function ed(campo, valor, extra) {
     return `<span class="xp-count ${extra || ""}" contenteditable="true" spellcheck="false" data-campo="${campo}">${esc(valor)}</span>`;
 }
@@ -2554,7 +2460,6 @@ const XP_STATUS_BAR = `
     <div class="xp-body"></div>
 `;
 
-/* ---------- MOSTRAR TWEETS ---------- */
 
 function renderTweets() {
 
@@ -2584,7 +2489,6 @@ function renderTweets() {
             year: "numeric"
         });
 
-        /* --- Contenedor: iPhone + formulario --- */
         const item = document.createElement("div");
         item.className = "xp-item";
 
@@ -2594,7 +2498,6 @@ function renderTweets() {
 
         const body = phone.querySelector(".xp-body");
 
-        /* --- Post principal --- */
         const card = document.createElement("div");
         card.className = "xp-card";
 
@@ -2688,7 +2591,6 @@ function renderTweets() {
 
         body.appendChild(card);
 
-        /* --- Respuestas (el hilo) --- */
         tweet.thread.forEach(function (r, rIndex) {
 
             const autor = savedCharacters[r.authorIndex];
@@ -2768,7 +2670,6 @@ function renderTweets() {
 
         item.appendChild(phone);
 
-        /* --- Guardar PNG de este teléfono --- */
         const guardar = document.createElement("button");
         guardar.type = "button";
         guardar.className = "xp-save-png";
@@ -2791,7 +2692,6 @@ function renderTweets() {
 
         item.appendChild(guardar);
 
-        /* --- Formulario para responder (fuera del iPhone) --- */
         if (formulariosAbiertos.has(tweet)) {
 
             const form = document.createElement("div");
@@ -2852,5 +2752,4 @@ function renderTweets() {
     });
 }
 
-// Muestra los posts guardados al abrir la página
 renderTweets();
