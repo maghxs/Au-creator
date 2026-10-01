@@ -1,6 +1,3 @@
-console.log("AU Creator funcionando ♡");
-
-
 const REACCIONES = [
     { id: "corazon", icono: "❤️" },
     { id: "pulgar-arriba", icono: "👍" },
