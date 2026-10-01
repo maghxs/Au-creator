@@ -2170,3 +2170,7 @@ body {
     background-color: #2c2f33;
     border-color: #1d9bf0;
 }
+
+#addMessage {
+    margin-bottom: 5px;
+}
