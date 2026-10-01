@@ -2149,3 +2149,24 @@ body {
 .xp-light .xp-action.active.xp-reply {
     color: #1d9bf0;
 }
+
+.tweet-image-button {
+    display: inline-block;
+    margin: 15px 0;
+    padding: 10px 24px;
+    background-color: #202327;
+    color: #ffffff;
+    border: 1px solid #53575b;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.tweet-image-button:hover {
+    background-color: #2c2f33;
+    border-color: #1d9bf0;
+}

@@ -28,7 +28,8 @@ const backButton = document.getElementById("backButton");
 const addParticipant = document.getElementById("addParticipant");
 const participantsList = document.getElementById("participantsList");
 const addMessage = document.getElementById("addMessage");
-const conversationDate = document.getElementById("conversationDate");
+const addImagen = document.getElementById("addImagen");
+const addMessageImversationDate = document.getElementById("conversationDate");
 
 const iphone = document.querySelector(".iphone");
 const inputBar = document.getElementById("inputBar");
@@ -46,11 +47,6 @@ const customTime = document.getElementById("customTime");
 const unreadInput = document.getElementById("unreadInput");
 
 const saveScreenshot = document.getElementById("saveScreenshot");
-
-const messageTypeModal = document.getElementById("messageTypeModal");
-const closeMessageType = document.getElementById("closeMessageType");
-const sendTextOption = document.getElementById("sendTextOption");
-const sendPhotoOption = document.getElementById("sendPhotoOption");
 
 let participanteMensaje = null;
 
@@ -798,12 +794,54 @@ function mostrarParticipantes() {
 }
 
 
-
 addMessage.addEventListener(
     "click",
     function () {
 
-        abrirTipoMensaje();
+        const texto = prompt(
+            "¿Qué mensaje quieres enviar?"
+        );
+
+        if (
+            !texto
+            || !texto.trim()
+        ) {
+            return;
+        }
+
+        mensajes.push({
+
+            texto:
+                texto.trim(),
+
+            remitenteId:
+                0,
+
+            tipo:
+                "sent",
+
+            tipoContenido:
+                "texto",
+
+            contenido:
+                null,
+
+            reaccion:
+                null
+
+        });
+
+        mostrarMensajes();
+
+    }
+);
+
+
+addImagen.addEventListener(
+    "click",
+    function () {
+
+        elegirFotoMensaje();
 
     }
 );
@@ -1491,125 +1529,6 @@ saveScreenshot.addEventListener(
 
 
 
-function abrirTipoMensaje(
-    participante = null
-) {
-
-    participanteMensaje =
-        participante;
-
-
-    messageTypeModal.style.display =
-        "flex";
-
-}
-
-
-function cerrarTipoMensaje() {
-
-    messageTypeModal.style.display =
-        "none";
-
-
-    participanteMensaje =
-        null;
-
-}
-
-
-
-closeMessageType.addEventListener(
-    "click",
-    cerrarTipoMensaje
-);
-
-
-messageTypeModal.addEventListener(
-    "click",
-    function (e) {
-
-        if (
-            e.target ===
-            messageTypeModal
-        ) {
-
-            cerrarTipoMensaje();
-
-        }
-
-    }
-);
-
-
-
-sendTextOption.addEventListener(
-    "click",
-    function () {
-
-        const texto =
-            prompt(
-                participanteMensaje
-                    ? `¿Qué quieres que diga ${participanteMensaje.nombre}?`
-                    : "¿Qué mensaje quieres enviar?"
-            );
-
-
-        if (
-            !texto
-            || !texto.trim()
-        ) {
-
-            return;
-
-        }
-
-
-        mensajes.push({
-
-            texto:
-                texto.trim(),
-
-            remitenteId:
-                participanteMensaje
-                    ? participanteMensaje.id
-                    : 0,
-
-            tipo:
-                participanteMensaje
-                    ? "received"
-                    : "sent",
-
-            tipoContenido:
-                "texto",
-
-            contenido:
-                null,
-
-            reaccion:
-                null
-
-        });
-
-
-        cerrarTipoMensaje();
-
-        mostrarMensajes();
-
-    }
-);
-
-
-
-sendPhotoOption.addEventListener(
-    "click",
-    function () {
-
-        elegirFotoMensaje(
-            participanteMensaje
-        );
-
-    }
-);
 
 
 
